@@ -101,3 +101,17 @@ function calculaAreaCirculo() {
     const area = areaCirculo(value);
     alert(area);
 }
+
+// Reto del Taller #1
+const lado = 12;
+const base = 10
+
+function alturaTrianguloIsosceles(lado, base) {
+    if(base < lado + lado) {
+        return Math.sqrt((lado * lado) - ((base * base) / 4));
+    } else {
+        alert("No es untriangulo válido");
+    }
+}
+
+console.log(alturaTrianguloIsosceles(lado, base));
