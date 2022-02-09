@@ -1,6 +1,13 @@
 
 // const precioOriginal = 120;
-// const descuento = 18;
+// const discount = 18;
+
+// const coupons = [
+//     "MICUMPLE",
+//     "BLACKFRIDAY",
+//     "INVIERNO2022",
+//     "PLATZI"
+// ];
 
 function calcularPrecioConDescuento(precio, descuento) {
     const porcentajePrecioConDescuento = 100 - descuento;
@@ -8,21 +15,40 @@ function calcularPrecioConDescuento(precio, descuento) {
     return precioConDescuento;
 }
 
-function onClickButtonPriceDiscount() {
+function onClickButtonPriceCoupon() {
     const inputPrice = document.getElementById("inputPrice");
-    const inputDiscount = document.getElementById("inputDiscount");
+    const inputCoupon = document.getElementById("inputCoupon");
     const priceValue = inputPrice.value;
-    const discountValue = inputDiscount.value;
-    const precioConDescuento = calcularPrecioConDescuento(priceValue, discountValue);
+    const couponValue = inputCoupon.value;
 
+    switch(couponValue) {
+        case "MICUMPLE":
+            discount = 60;
+            break;
+        case "BLACKFRIDAY":
+            discount = 20;
+            break;
+        case "INVIERNO2022":
+            discount = 15;
+            break;
+        case "PLATZI":
+            discount = 30;
+            break;
+        default:
+            discount = 0;
+    }
+    const precioConDescuento = calcularPrecioConDescuento(priceValue, discount);
     const resultPrice = document.getElementById("resultPrice");
-    resultPrice.innerText = "El precio con descuento es: $" + precioConDescuento;
+    if (discount === 0) {
+        resultPrice.innerText = "Cupón NO válido; ingresa otro cupón.";
+    } else {
+        resultPrice.innerText = "El precio con discount es: $" + precioConDescuento;
+    }
 }
-
 
 // console.log({
 //     precioOriginal,
-//     descuento,
+//     discount,
 //     porcentajePrecioConDescuento,
 //     precioConDescuento
 // });
