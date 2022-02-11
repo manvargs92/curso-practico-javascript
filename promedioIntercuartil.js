@@ -4,17 +4,37 @@
 
 const lista = [5, 8, 4, 38, 8, 6, 9, 7, 7, 3, 1, 6];
 
-// El primer paso sería ordenarlos de menor a mayor
+function calcularPromedioIntercuartil(lista) {
 
-const listaOrdenada = lista.sort(function (elemento1, elemento2) {
-    return elemento1 - elemento2;
-});
+        // El primer paso sería ordenar los elementos de menor a mayor
+
+        let listaOrdenada = lista.sort(function (elemento1, elemento2) {
+            return elemento1 - elemento2;
+        })
+
+            
+        // Se descartan el 25% de los datos inferiores y el 25% de los datos superiores
+
+        function calcularCantidadDatosDescartar(cantidad) {
+            return (cantidad * 25) / 100
+        }
+
+        let listaReducida = listaOrdenada.slice(calcularCantidadDatosDescartar(listaOrdenada.length), listaOrdenada.length - calcularCantidadDatosDescartar(listaOrdenada.length));
+        
+        // Se calcula el promedio aritmético
+        function calcularMediaAritmetica(lista) {         
+            const sumaLista = lista.reduce(function (valorAcumulado = 0, elemento) {
+                return valorAcumulado + elemento;
+            });
+        
+            const promedioLista = sumaLista / lista.length;
+        
+            return promedioLista;
+        }
+
+        return calcularMediaAritmetica(listaReducida);
+    }
 
 
-// Se descartan el 25% de los datos inferiores y el 25% de los datos superiores
 
-function calcularCantidadDatosDescartar(cantidad) {
-    return (cantidad * 25) / 100
-}
 
-let nuevaLista = listaOrdenada.splice(calcularCantidadDatosDescartar(lista), 6); // pensar como sacar ese 6
